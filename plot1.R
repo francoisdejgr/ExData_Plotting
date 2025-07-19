@@ -2,7 +2,7 @@
 #Our overall goal here is simply to examine how household energy usage varies 
 #over a 2-day period in February, 2007
 #We will only be using data from the dates 2007-02-01 and 2007-02-02
-#Note that in this dataset missing values are coded as ??
+#Note that in this dataset missing values are coded as ?
 setwd("D:/learn/code/code_r/2025-07/ExData_Plotting")
 library(tidyverse)
 
@@ -12,10 +12,11 @@ household_power_consumption <- read_delim("household_power_consumption.txt",
 
 
 graph_data <- household_power_consumption %>% 
+    mutate(DTG = paste(Date, Time)) %>% 
+    mutate(DTG = dmy_hms(DTG)) %>% #merge date and time - easier to plot
     mutate(Date = dmy(Date))%>% 
-    mutate(Time = hms(Date))%>% 
+    mutate(Time = hms(Time))%>% 
     filter(Date > as.Date("2007/01/31") & Date < as.Date("2007/02/03") )
-
 
 
 ggplot(graph_data, aes(x=Global_active_power)) +

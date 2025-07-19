@@ -16,7 +16,7 @@ graph_data <- household_power_consumption %>%
     mutate(DTG = dmy_hms(DTG)) %>% #merge date and time - easier to plot
     mutate(Date = dmy(Date))%>% 
     mutate(Time = hms(Time))%>% 
-    filter(Date > as.Date("2007/01/31") & Date < as.Date("2007/02/02") )
+    filter(Date > as.Date("2007/01/31") & Date < as.Date("2007/02/03") )
 
 
 plot1 <- ggplot(graph_data, aes(x=Global_active_power)) +
